@@ -1,0 +1,22 @@
+import ctypes
+import os
+print("=== Wallpaper Changer Bot ===")
+print("Type 'exit' to quit.")
+while True:
+    image_path = input("\nEnter wallpaper image path: ")
+    if image_path.lower() == "exit":
+        print("Goodbye!")
+        break
+    if not os.path.exists(image_path):
+        print("Image file not found.")
+        continue
+    try:
+        ctypes.windll.user32.SystemParametersInfoW(
+            20,
+            0,
+            image_path,
+            3
+        )
+        print("Wallpaper changed successfully!")
+    except Exception as e:
+        print("Error:", e)
